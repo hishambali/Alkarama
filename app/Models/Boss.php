@@ -13,7 +13,7 @@ class Boss extends Model
         'name',
         'start_year',
         'image',
-        
+
     ];
 
     /**
@@ -32,4 +32,5 @@ class Boss extends Model
      */
     protected $casts = [
     ];
+    
 }

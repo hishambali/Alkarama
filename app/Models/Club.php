@@ -14,10 +14,15 @@ class Club extends Model
         'logo',
         'address',
         'sport_id',
-        
+
     ];
-    public function sport(){
-        return $this->BelongsTo(Sport::class); 
+    public function sport():BelongsTo{
+        return $this->BelongsTo(Sport::class);
 
     }
+    public function standing():HasMany
+    {
+        return $this->hasMany(Standings::class);
+    }
+
 }

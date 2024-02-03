@@ -11,17 +11,18 @@ class Prime extends Model
     protected $fillable = [
         'uuid',
         'name',
-        'description',  
-        'image',  
-        'type',  
-        'seasone_id',  
-        'sport_id',  
+        'description',
+        'image',
+        'type',
+        'seasone_id',
+        'sport_id',
     ];
-    public function sport(){
-        return $this->BelongsToMany(Sport::class); 
+    public function sport():BelongsTo{
+        return $this->BelongsToMany(Sport::class);
 
     }
-    public function seasone() {
+    public function seasone():BelongsTo
+    {
         return $this->belongsToMany(Seasone::class);
     }
 }

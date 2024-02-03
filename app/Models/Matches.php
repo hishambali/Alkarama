@@ -19,12 +19,25 @@ class Matches extends Model
         'seasone_id',
         'club1_id',
         'club2_id',
-        
+
     ];
-    public function seasone() {
+    public function seasone():BelongsTo {
         return $this->belongsTo(Seasone::class);
     }
-    public function club() {
-        return $this->belongsTo(Club::class);
+    // public function club() {
+    //     return $this->belongsTo(Club::class);
+    // }
+    public function replacments():HasMany
+    {
+        return $this->hasMany(Replacment::class);
     }
+    public function palns():HasMany
+    {
+        return $this->hasMany(Plan::class);
+    }
+    public function statistics():HasMany
+    {
+        return $this->hasMany(Statistic::class);
+    }
+
 }

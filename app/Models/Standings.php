@@ -18,12 +18,13 @@ class Standings extends Model
         'point',
         'seasone_id',
         'club_id',
-        
+
     ];
-    public function seasone() {
+    public function seasones() {
         return $this->belongsTo(Seasone::class);
     }
-    public function club() {
+    public function clubs(){
         return $this->belongsToMany(Club::class);
     }
+
 }

@@ -13,13 +13,12 @@ class Clothes extends Model
         'image',
         'seasone_id',
         'sport_id',
-        
+
     ];
-    public function seasone() {
+    public function seasone():BelongsTo {
         return $this->belongsTo(Seasone::class);
     }
-    public function sport(){
-        return $this->BelongsTo(Sport::class); 
-
-    }
+    // public function sport(){
+    //     return $this->BelongsTo(Sport::class);
+    // }
 }

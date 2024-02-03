@@ -9,17 +9,19 @@ class Replacment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'uuid',  
-        'inplayer_id',  
-        'outplayer_id',  
-        'match_id',  
+        'uuid',
+        'inplayer_id',
+        'outplayer_id',
+        'match_id',
     ];
-    public function match(){
-        return $this->BelongsTo(Matches::class); 
+    public function match():BelongsTo
+    {
+        return $this->BelongsTo(Matches::class);
 
     }
-    public function player(){
-        return $this->belongsToMany(Player::class); 
+    public function player():BelongsTo
+    {
+        return $this->belongsToMany(Player::class);
 
     }
 

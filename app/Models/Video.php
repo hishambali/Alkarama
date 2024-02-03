@@ -12,6 +12,6 @@ class Video extends Model
         'uuid',
         'url',
         'description',
-        
+
     ];
 }

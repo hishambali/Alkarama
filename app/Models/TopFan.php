@@ -12,11 +12,13 @@ class TopFan extends Model
         'uuid',
         'name',
         'association_id',
-        
-    ];
-    public function association(){
-        return $this->BelongsTo(Association::class); 
 
+    ];
+    // public function association(){
+    //     return $this->BelongsTo(Association::class);
+    // }
+    public function associations():HasOne
+    {
+        return $this->hasOne(association::class);
     }
-    
 }

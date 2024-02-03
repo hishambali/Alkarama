@@ -12,6 +12,22 @@ class Seasone extends Model
         'uuid',
         'name',
         'start_date',
-        'end_date',
+        'end_date'
     ];
+}
+public function prime():HasMany
+{
+    return $this->hasMany(Prime::class);
+}
+public function standings():HasMany
+{
+    return $this->hasMany(Standings::class);
+}
+public function clothes():HasOne
+{
+    return $this->hasOne(Clothes::class);
+}
+public function matches():HasMany
+{
+    return $this->hasMany(Matches::class);
 }
