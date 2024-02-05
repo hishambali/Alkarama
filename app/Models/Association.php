@@ -36,11 +36,11 @@ class Association extends Model
     protected $casts = [
     ];
 
-    public function sport():BelongsTo
+    public function sport():object
     {
          return $this->BelongsTo(Sport::class);
     }
-    public function topFan():BelongsTo
+    public function topFan():object
     {
          return $this->BelongsTo(TopFan::class);
     }
