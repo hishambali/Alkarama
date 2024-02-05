@@ -21,21 +21,21 @@ class Matches extends Model
         'club2_id',
 
     ];
-    public function seasone():BelongsTo {
+    public function seasone():object {
         return $this->belongsTo(Seasone::class);
     }
     // public function club() {
     //     return $this->belongsTo(Club::class);
     // }
-    public function replacments():HasMany
+    public function replacments():object
     {
         return $this->hasMany(Replacment::class);
     }
-    public function palns():HasMany
+    public function palns():object
     {
         return $this->hasMany(Plan::class);
     }
-    public function statistics():HasMany
+    public function statistics():object
     {
         return $this->hasMany(Statistic::class);
     }

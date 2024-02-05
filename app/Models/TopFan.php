@@ -17,7 +17,7 @@ class TopFan extends Model
     // public function association(){
     //     return $this->BelongsTo(Association::class);
     // }
-    public function associations():HasOne
+    public function associations():object
     {
         return $this->hasOne(association::class);
     }

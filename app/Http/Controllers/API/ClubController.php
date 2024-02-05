@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ClubResource;
 use App\Models\Club;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class ClubController extends Controller
     public function index()
     {
         //
+        
+       return ClubResource::collection(Club::get());
     }
 
     /**
