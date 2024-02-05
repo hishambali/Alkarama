@@ -38,9 +38,11 @@ class PlanController extends Controller
      * @param  \App\Models\Plan  $plan
      * @return \Illuminate\Http\Response
      */
-    public function show(Plan $plan)
+    public function show($uuid)
     {
         //
+        return PlanResource::make (Plan::where("uuid",$uuid)->first());
+
     }
 
     /**

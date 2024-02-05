@@ -78,9 +78,11 @@ use FileUploader;    /**
      * @param  \App\Models\Association  $association
      * @return \Illuminate\Http\Response
      */
-    public function show(Association $association)
+    public function show($uuid)
     {
         //
+        return AssociationResource::make(Association::where("uuid",$uuid)->first());
+
     }
 
     /**

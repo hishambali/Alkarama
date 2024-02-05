@@ -38,9 +38,11 @@ class StatisticController extends Controller
      * @param  \App\Models\Statistic  $statistic
      * @return \Illuminate\Http\Response
      */
-    public function show(Statistic $statistic)
+    public function show($uuid)
     {
         //
+        return StatisticResource::make(Statistic::where("uuid",$uuid)->first());
+
     }
 
     /**

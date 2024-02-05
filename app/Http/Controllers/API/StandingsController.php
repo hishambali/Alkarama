@@ -38,9 +38,10 @@ class StandingsController extends Controller
      * @param  \App\Models\Standings  $standings
      * @return \Illuminate\Http\Response
      */
-    public function show(Standings $standings)
+    public function show($uuid)
     {
         //
+        return StandingsResource::make(Standings::where("uuid",$uuid)->first());
     }
 
     /**

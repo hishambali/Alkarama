@@ -38,9 +38,11 @@ class ReplacmentController extends Controller
      * @param  \App\Models\Replacment  $replacment
      * @return \Illuminate\Http\Response
      */
-    public function show(Replacment $replacment)
+    public function show($uuid)
     {
         //
+        return ReplacmentResource::make(Replacment::where("uuid",$uuid)->first());
+
     }
 
     /**

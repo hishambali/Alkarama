@@ -38,9 +38,11 @@ class SeasoneController extends Controller
      * @param  \App\Models\Seasone  $seasone
      * @return \Illuminate\Http\Response
      */
-    public function show(Seasone $seasone)
+    public function show($uuid)
     {
         //
+        return SeasoneResource::make(Seasone::where("uuid",$uuid)->first());
+
     }
 
     /**

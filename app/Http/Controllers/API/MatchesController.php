@@ -38,9 +38,11 @@ class MatchesController extends Controller
      * @param  \App\Models\Matches  $matches
      * @return \Illuminate\Http\Response
      */
-    public function show(Matches $matches)
+    public function show($uuid)
     {
         //
+        return MatchesResource::make(Matches::where("uuid",$uuid)->first());
+
     }
 
     /**

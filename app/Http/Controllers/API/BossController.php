@@ -37,9 +37,11 @@ class BossController extends Controller
      * @param  \App\Models\Boss  $boss
      * @return \Illuminate\Http\Response
      */
-    public function show(Boss $boss)
+    public function show($uuid)
     {
         //
+        return BossResource::make(Boss::where("uuid",$uuid)->first());
+
     }
 
     /**
