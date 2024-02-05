@@ -21,15 +21,15 @@ class Player extends Model
         'image',
         'sport_id',
     ];
-    public function sport():BelongsTo
+    public function sport():object
     {
         return $this->belongsTo(Sport::class);
     }
-    public function replacments(): HasMany
+    public function replacments():object
     {
         return $this->hasMany(Replacment::class);
     }
-    public function plans(): HasMany
+    public function plans():object
     {
         return $this->hasMany(Plan::class);
 

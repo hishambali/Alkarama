@@ -14,12 +14,12 @@ class Replacment extends Model
         'outplayer_id',
         'match_id',
     ];
-    public function match():BelongsTo
+    public function match():object
     {
         return $this->BelongsTo(Matches::class);
 
     }
-    public function player():BelongsTo
+    public function player():object
     {
         return $this->belongsToMany(Player::class);
 

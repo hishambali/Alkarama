@@ -14,20 +14,22 @@ class Seasone extends Model
         'start_date',
         'end_date'
     ];
-}
-public function prime():HasMany
-{
-    return $this->hasMany(Prime::class);
-}
-public function standings():HasMany
-{
-    return $this->hasMany(Standings::class);
-}
-public function clothes():HasOne
-{
-    return $this->hasOne(Clothes::class);
-}
-public function matches():HasMany
-{
-    return $this->hasMany(Matches::class);
+
+    public function prime():object
+    {
+        return $this->hasMany(Prime::class);
+    }
+    public function standings():object
+    {
+        return $this->hasMany(Standings::class);
+    }
+    public function clothes():object
+    {
+        return $this->hasOne(Clothes::class);
+    }
+    public function matches():object
+    {
+        return $this->hasMany(Matches::class);
+    }
+    
 }

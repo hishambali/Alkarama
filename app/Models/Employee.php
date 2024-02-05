@@ -16,7 +16,7 @@ class Employee extends Model
         'sport_id',
 
     ];
-    public function sport():BelongsTo{
+    public function sport():object{
         return $this->BelongsTo(Sport::class);
 
     }

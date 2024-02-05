@@ -4,12 +4,15 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AssociationResource;
+use App\Http\Traits\FileUploader;
 use App\Models\Association;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class AssociationController extends Controller
 {
-    /**
+use FileUploader;    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -31,6 +34,42 @@ class AssociationController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = Validator::make($request->all(),[
+            'boss' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|string|',
+            'country' => 'required|string|',
+            'sport_id' => 'required|string|exists:sports,id',
+            
+        ]);
+        
+            if ($validatedData->fails()) {
+                return $validatedData->errors();
+            }
+            else {
+                $sport = Association::where("boss",$request->boss)->first();
+
+                if ($sport == true) {
+                    dd("This Association is already exists");
+                    # code...
+                }
+                else{
+                    $uuid = Str::uuid();
+                    $date =[
+                        'boss'=>$request->boss,
+                        'description'=>$request->description,
+                        'country'=>$request->country,
+                        'image'=> $this->uploadFile($request,$request->boss,"Association"),
+                        'uuid'=>$uuid, 
+                        'sport_id'=>$request->sport_id, 
+                    ];
+                    if (Association::create($date)) 
+                    {
+                        return $date;
+                        
+                    }                   
+                }
+            }
     }
 
     /**

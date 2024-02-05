@@ -17,19 +17,19 @@ class Sport extends Model
     // public function association() {
     //     return $this->belongsTo(Association::class);
     // }
-    public function employees(): HasMany{
+    public function employees():object{
         return $this->hasMany(Employee::class);
     }
-    public function primes(): HasMany{
+    public function primes(): object{
         return $this->hasMany(Prime::class);
     }
-    public function clubs(): HasMany{
+    public function clubs(): object{
         return $this->hasMany(Club::class);
     }
-    public function players(): HasMany{
+    public function players(): object{
         return $this->hasMany(Player::class);
     }
-    public function associations(): HasMany{
+    public function associations(): object{
         return $this->hasMany(association::class);
     }
 

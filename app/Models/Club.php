@@ -16,11 +16,11 @@ class Club extends Model
         'sport_id',
 
     ];
-    public function sport():BelongsTo{
+    public function sport():object{
         return $this->BelongsTo(Sport::class);
 
     }
-    public function standing():HasMany
+    public function standing():object
     {
         return $this->hasMany(Standings::class);
     }
