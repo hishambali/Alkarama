@@ -70,10 +70,10 @@ class SportController extends Controller
      * @param  \App\Models\Sport  $sport
      * @return \Illuminate\Http\Response
      */
-    public function show(Sport $sport,Request $request)
+    public function show($uuid)
     {
         //
-        return SportResource::make(Sport::find($request->uuid));
+        return SportResource::make( Sport::where("uuid",$uuid)->first());
 
     }
 

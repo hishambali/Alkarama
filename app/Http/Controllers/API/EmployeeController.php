@@ -38,9 +38,11 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($uuid)
     {
         //
+        return EmployeeResource::make(Employee::where("uuid",$uuid)->first());
+
     }
 
     /**

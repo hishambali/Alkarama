@@ -38,9 +38,11 @@ class PrimeController extends Controller
      * @param  \App\Models\Prime  $prime
      * @return \Illuminate\Http\Response
      */
-    public function show(Prime $prime)
+    public function show($uuid)
     {
         //
+        return PrimeResource::make(Prime::where("uuid",$uuid)->first());
+
     }
 
     /**

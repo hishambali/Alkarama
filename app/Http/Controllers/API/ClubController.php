@@ -38,9 +38,11 @@ class ClubController extends Controller
      * @param  \App\Models\Club  $club
      * @return \Illuminate\Http\Response
      */
-    public function show(Club $club)
+    public function show($uuid)
     {
         //
+        return ClubResource::make(Club::where("uuid",$uuid)->first());
+
     }
 
     /**

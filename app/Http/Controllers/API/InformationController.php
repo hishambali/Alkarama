@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\InformationResource;
+use App\Models\Employee;
 use App\Models\Information;
 use Illuminate\Http\Request;
 
@@ -38,9 +39,11 @@ class InformationController extends Controller
      * @param  \App\Models\Information  $information
      * @return \Illuminate\Http\Response
      */
-    public function show(Information $information)
+    public function show($uuid)
     {
         //
+        return InformationResource::make(Information::where("uuid",$uuid)->first());
+
     }
 
     /**

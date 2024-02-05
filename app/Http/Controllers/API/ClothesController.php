@@ -38,9 +38,11 @@ class ClothesController extends Controller
      * @param  \App\Models\Clothes  $clothes
      * @return \Illuminate\Http\Response
      */
-    public function show(Clothes $clothes)
+    public function show($uuid)
     {
         //
+        return ClothesResource::make(Clothes::where("uuid",$uuid)->first());
+
     }
 
     /**
