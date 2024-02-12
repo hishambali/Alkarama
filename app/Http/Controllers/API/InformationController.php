@@ -4,12 +4,14 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\InformationResource;
+use App\Http\Traits\GeneralTrait;
 use App\Models\Employee;
 use App\Models\Information;
 use Illuminate\Http\Request;
 
 class InformationController extends Controller
 {
+    use GeneralTrait;
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +20,7 @@ class InformationController extends Controller
     public function index()
     {
         //
-        return InformationResource::collection(Information::get());
+        return $this->apiResponse(InformationResource::collection(Information::get()),true,null,200);
 
     }
 
@@ -42,7 +44,7 @@ class InformationController extends Controller
     public function show($uuid)
     {
         //
-        return InformationResource::make(Information::where("uuid",$uuid)->first());
+        return $this->apiResponse(InformationResource::make(Information::where("uuid",$uuid)->first()),true,null,200);
 
     }
 

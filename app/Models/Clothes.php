@@ -18,7 +18,7 @@ class Clothes extends Model
     public function Seasone():object {
         return $this->BelongsTo(Seasone::class);
     }
-    public function Sport():object{
-        return $this->BelongsTo(Sport::class);
-    }
+     public function Sport():object{
+         return $this->BelongsTo(Sport::class);
+     }
 }

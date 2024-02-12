@@ -50,5 +50,10 @@ class Association extends Model
     {
         return $this->morphMany(Video::class,'video_able');
     }
+   
+    public function setBossAttribute($value)
+    {
+        $this->attributes['boss'] = str_replace(' ', '_', $value);
+    }
 
 }

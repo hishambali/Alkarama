@@ -38,5 +38,6 @@ class Sport extends Model
     public function Information() : MorphMany{
         return $this->morphMany(Information::class,'information_able');
     }
+    
 
 }

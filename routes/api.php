@@ -106,6 +106,7 @@ Route::prefix('seasone')->group(function(){
 });
 Route::prefix('standings')->group(function(){
     Route::get("/index",[StandingsController::class,'index']);
+    Route::get("/pe",[StandingsController::class,'PlayersEmployees']);
     Route::get("/show/{uuid}",[StandingsController::class,'show']);
     Route::post("/store",[StandingsController::class,'store']);
     Route::post("/edit/{uuid}",[StandingsController::class,'store']);
