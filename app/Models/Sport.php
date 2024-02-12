@@ -35,12 +35,7 @@ class Sport extends Model
     public function Clothes(): object{
         return $this->HasMany(Clothes::class);
     }
-    public function Boss(): object{
-        return $this->HasMany(Boss::class);
-    }
-
-    public function Information() : MorphMany
-    {
+    public function Information() : MorphMany{
         return $this->morphMany(Information::class,'information_able');
     }
 
