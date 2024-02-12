@@ -13,7 +13,6 @@ class Boss extends Model
         'name',
         'start_year',
         'image',
-        'sport_id',
     ];
 
     /**
@@ -33,8 +32,6 @@ class Boss extends Model
     protected $casts = [
     ];
 
-    public function Boss():object{
-        return $this->BelongsToMany(Boss::class);
-    }
+
     
 }
