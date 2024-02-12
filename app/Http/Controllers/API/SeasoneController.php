@@ -5,7 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SeasoneResource;
 use App\Models\Seasone;
+use Illuminate\Support\Str;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SeasoneController extends Controller
 {
@@ -30,6 +33,28 @@ class SeasoneController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = Validator::make($request->all(),[
+            'name' => 'required|string',
+            'start_date'=>'required|date|date_format:Y-m-d|after:yesterday' ,
+            'end_date'=> "required|date|date_format:Y-m-d|after:start_date",
+            
+        ]);
+        
+            if ($validatedData->fails()) {
+                return $validatedData->errors();
+            }
+            else {
+                $uuid = Str::uuid();
+                $data = [
+                  'name'=>$request->name,  
+                  'start_date'=>$request->start_date,  
+                  'end_date'=>$request->end_date,
+                  'uuid'=>$uuid,
+                ];
+            }
+            if (Seasone::create($data)) {
+                return $data;
+            }
     }
 
     /**

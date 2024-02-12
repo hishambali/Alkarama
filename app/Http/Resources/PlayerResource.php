@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PlayerResource extends JsonResource
@@ -20,12 +21,12 @@ class PlayerResource extends JsonResource
             'high'=> $this->high,
             'play'=> $this->play,
             'number'=> $this->number,
-            'born'=> $this->born,
+            'age'=> Carbon::parse($this->born)->age,
             'from'=> $this->from,
             'first_club'=> $this->first_club,
             'career'=> $this->career,
             'image'=> $this->image,
-            'sport_id'=> $this->sport_id,
+            'sport_id'=> $this->sport->name,
         ];
     }
 }

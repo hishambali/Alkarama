@@ -44,5 +44,10 @@ class Association extends Model
     {
          return $this->BelongsTo(TopFan::class);
     }
+   
+    public function setBossAttribute($value)
+    {
+        $this->attributes['boss'] = str_replace(' ', '_', $value);
+    }
 
 }

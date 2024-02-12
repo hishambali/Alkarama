@@ -9,15 +9,17 @@ trait FileUploader
     public function uploadFile($request, $data, $name, $inputName = 'image')
     {
         $requestFile = $request->file($inputName);
-        try {$file = $request->file($inputName);
+        try {
+            $file = $requestFile;
              // اسم المجلد الذي ترغب في تخزين الصورة فيه
-    
+
             $fileName = $data . '-' . $name . '.' . $file->getClientOriginalExtension();
-    
+
             // نقل الصورة إلى المجلد المطلوب في public
             $file->move(public_path($name), $fileName);
-            $request->image = $fileName;
-            return $fileName;
+            $url = url( $name . '/' . $fileName);
+            $request->image = $url;
+            return $url;
 
         } catch (\Throwable $th) {
             report($th);

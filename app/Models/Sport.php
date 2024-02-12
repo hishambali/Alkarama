@@ -32,5 +32,8 @@ class Sport extends Model
     public function associations(): object{
         return $this->hasMany(association::class);
     }
+    public function clothes():object {
+        return $this->hasOne(Clothes::class);
+    }
 
 }
