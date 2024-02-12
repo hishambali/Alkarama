@@ -15,11 +15,11 @@ class Plan extends Model
         'match_id',
         
     ];
-    public function match():object{
+    public function Match():object{
         return $this->BelongsTo(Matches::class); 
 
     }
-    public function player():object{
+    public function Player():object{
         return $this->BelongsTo(Player::class); 
 
     }

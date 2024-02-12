@@ -15,7 +15,7 @@ class Statistic extends Model
         'match_id',
         
     ];
-    public function match():object{
+    public function Match():object{
         return $this->BelongsTo(Matches::class); 
 
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Matches extends Model
 {
@@ -21,23 +22,33 @@ class Matches extends Model
         'club2_id',
 
     ];
-    public function seasone():object {
-        return $this->belongsTo(Seasone::class);
+    public function Seasone():object {
+        return $this->BelongsTo(Seasone::class);
     }
-    // public function club() {
-    //     return $this->belongsTo(Club::class);
-    // }
-    public function replacments():object
-    {
-        return $this->hasMany(Replacment::class);
+    public function Club() {
+        return $this->BelongsTo(Club::class);
     }
-    public function palns():object
+    public function Replacments():object
     {
-        return $this->hasMany(Plan::class);
+        return $this->HasMany(Replacment::class);
     }
-    public function statistics():object
+    public function Palns():object
     {
-        return $this->hasMany(Statistic::class);
+        return $this->HasMany(Plan::class);
+    }
+    public function Statistics():object
+    {
+        return $this->HasMany(Statistic::class);
+    }
+
+    public function Information() : MorphMany
+    {
+        return $this->morphMany(Information::class,'information_able');
+    }
+
+    public function Videos() : MorphMany
+    {
+        return $this->morphMany(Video::class,'video_able');
     }
 
 }

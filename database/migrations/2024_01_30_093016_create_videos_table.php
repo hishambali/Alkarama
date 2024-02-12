@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid();
             $table->string('url');
             $table->string('description');
-            $table->morphs('video');
+            $table->morphs('video_able');
             $table->timestamps();
         });
     }
