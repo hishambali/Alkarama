@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Seasone extends Model
 {
@@ -15,21 +16,26 @@ class Seasone extends Model
         'end_date'
     ];
 
-    public function prime():object
+    public function Prime():object
     {
-        return $this->hasMany(Prime::class);
+        return $this->HasMany(Prime::class);
     }
-    public function standings():object
+    public function Standings():object
     {
-        return $this->hasMany(Standings::class);
+        return $this->HasMany(Standings::class);
     }
-    public function clothes():object
+    public function Clothes():object
     {
-        return $this->hasOne(Clothes::class);
+        return $this->HasOne(Clothes::class);
     }
-    public function matches():object
+    public function Matches():object
     {
-        return $this->hasMany(Matches::class);
+        return $this->HasMany(Matches::class);
+    }
+
+    public function Information() : MorphMany
+    {
+        return $this->morphMany(Information::class,'information_able');
     }
     
 }

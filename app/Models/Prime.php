@@ -17,12 +17,12 @@ class Prime extends Model
         'seasone_id',
         'sport_id',
     ];
-    public function sport():object{
+    public function Sports():object{
         return $this->BelongsToMany(Sport::class);
 
     }
-    public function seasone():object
+    public function Seasones():object
     {
-        return $this->belongsToMany(Seasone::class);
+        return $this->BelongsToMany(Seasone::class);
     }
 }

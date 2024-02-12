@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->string('title');
-            $table->string('content');
+            $table->longText('content');
             $table->string('image');
             $table->integer("reads");
             $table->enum('type', ['Strategy', 'News', 'Regular', 'Slider']);
-            $table->morphs('information');
+            $table->morphs('information_able');
             $table->timestamps();
         });
     }
