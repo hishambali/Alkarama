@@ -15,10 +15,10 @@ class Clothes extends Model
         'sport_id',
 
     ];
-    public function seasone():object {
-        return $this->belongsTo(Seasone::class);
+    public function Seasone():object {
+        return $this->BelongsTo(Seasone::class);
     }
-     public function sport(){
+     public function Sport():object{
          return $this->BelongsTo(Sport::class);
      }
 }

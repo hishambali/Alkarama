@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
@@ -36,13 +37,18 @@ class Association extends Model
     protected $casts = [
     ];
 
-    public function sport():BelongsTo
+    public function Sport():object
     {
          return $this->BelongsTo(Sport::class);
     }
-    public function topFan():BelongsTo
+    public function TopFan():object
     {
-         return $this->BelongsTo(TopFan::class);
+         return $this->hasOne(TopFan::class);
+    }
+
+    public function Videos() : MorphMany
+    {
+        return $this->morphMany(Video::class,'video_able');
     }
    
     public function setBossAttribute($value)

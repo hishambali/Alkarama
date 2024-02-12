@@ -116,8 +116,8 @@ class StandingsController extends Controller
         try {
             $Boss = BossResource::make(Boss::orderby('start_year')->first());
             $clothes = ClothesResource::make(Clothes::orderby('seasone_id')->first());
-           $goalkeeper = PlayerResource::collection(Player::where('play','GK')->get());
-           $defence = PlayerResource::collection(Player::where('play','CB')->orWhere('play','RB')->orWhere('play','LB')->get());
+            $goalkeeper = PlayerResource::collection(Player::where('play','GK')->get());
+            $defence = PlayerResource::collection(Player::where('play','CB')->orWhere('play','RB')->orWhere('play','LB')->get());
             $middle = PlayerResource::collection(Player::where('play','CM')->orWhere('play','RM')->orWhere('play','LM')->orWhere('play','AM')->orWhere('play','DM')->get());
             $attack = PlayerResource::collection(Player::where('play','CF')->orWhere('play','RW')->orWhere('play','LW')->orWhere('play','SS')->get());
             $date = [

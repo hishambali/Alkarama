@@ -20,11 +20,11 @@ class Standings extends Model
         'club_id',
 
     ];
-    public function seasones():object {
-        return $this->belongsTo(Seasone::class);
+    public function Seasones():object {
+        return $this->BelongsTo(Seasone::class);
     }
-    public function clubs():object{
-        return $this->belongsToMany(Club::class);
+    public function Clubs():object{
+        return $this->BelongsToMany(Club::class);
     }
 
 }
