@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BossResource extends JsonResource
@@ -17,7 +18,7 @@ class BossResource extends JsonResource
         return [
             'uuid'=> $this->uuid,
             'name'=> $this->name,
-            'start_year'=> $this->start_year,
+            'start_year'=> Carbon::parse($this->start_year)->year,
             'image'=> $this->image,
         ];
     }
