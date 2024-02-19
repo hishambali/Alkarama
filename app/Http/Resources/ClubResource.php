@@ -14,11 +14,11 @@ class ClubResource extends JsonResource
      */
     public function toArray($request)
     {
-        $path= "Club/". $this->name . '-' . 'Club.png';
+       
         return [
             'uuid'=> $this->uuid,
             'name'=> $this->name,
-            'logo'=> public_path($path) ,
+            'logo'=> $this->logo,
             'AddressOfClub'=> $this->address,
             'SportName'=>$this->sport->name,
         ];
