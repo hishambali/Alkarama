@@ -4,8 +4,11 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\VideoResource;
+use App\Models\Association;
 use App\Models\Video;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class VideoController extends Controller
 {
@@ -29,7 +32,7 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
     }
 
     /**
@@ -38,7 +41,7 @@ class VideoController extends Controller
      * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function show(Video $video)
+    public function show($uuid)
     {
         //
     }

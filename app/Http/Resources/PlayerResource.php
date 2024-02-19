@@ -22,6 +22,7 @@ class PlayerResource extends JsonResource
             'play'=> $this->play,
             'number'=> $this->number,
             'age'=> Carbon::parse($this->born)->age,
+            'born'=> $this->born,
             'from'=> $this->from,
             'first_club'=> $this->first_club,
             'career'=> $this->career,

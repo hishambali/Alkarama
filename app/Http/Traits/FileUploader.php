@@ -16,7 +16,7 @@ trait FileUploader
             $fileName = $data . '-' . $name . '.' . $file->getClientOriginalExtension();
 
             // نقل الصورة إلى المجلد المطلوب في public
-            $file->move(public_path($name), $fileName);
+            $file->move($name, $fileName);
             $url = url( $name . '/' . $fileName);
             $request->image = $url;
             return $url;

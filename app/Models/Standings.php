@@ -15,7 +15,7 @@ class Standings extends Model
         'lose',
         'draw',
         'play',
-        'point',
+        'points',
         'seasone_id',
         'club_id',
 
@@ -26,5 +26,7 @@ class Standings extends Model
     public function Clubs():object{
         return $this->BelongsToMany(Club::class);
     }
-
+    public function Club():object{
+        return $this->BelongsTo(Club::class);
+    }
 }

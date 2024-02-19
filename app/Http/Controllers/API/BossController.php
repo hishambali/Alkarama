@@ -4,11 +4,17 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BossResource;
+use App\Http\Traits\FileUploader;
+use App\Http\Traits\GeneralTrait;
 use App\Models\Boss;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BossController extends Controller
 {
+    use GeneralTrait;
+    use FileUploader;
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +35,27 @@ class BossController extends Controller
     public function store(Request $request)
     {
         //
+        $valid = Validator::make($request->all(), [
+            'name'=> 'required|string',
+            'start_year'=> 'required|date',
+            'image'=> 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+        if ($valid->fails()) {
+            return $valid->errors();
+
+            # code...
+        }
+        else {
+            $uuid =Str::uuid();
+            $data = [
+                'name'=> $request->name,
+                'image'=> $this->uploadFile($request,$request->name.$uuid,"Boss","image"),
+                'start_year'=> $request->start_year,
+                'uuid'=> $uuid
+            ];
+            Boss::create($data);
+            return $this->apiResponse($data,true,null,200);
+        }
     }
 
     /**

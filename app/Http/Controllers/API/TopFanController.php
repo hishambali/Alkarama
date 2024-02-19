@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TopFanResource;
+use App\Models\Association;
 use App\Models\TopFan;
 use Illuminate\Support\Str;
 
@@ -35,7 +36,7 @@ class TopFanController extends Controller
         //
         $validatedData = Validator::make($request->all(),[
             'name' => 'required|string',
-            'association_id' => 'required|string|exists:associations,id',
+            'association_id' => 'required|string|exists:associations,uuid',
             
         ]);
         
@@ -44,7 +45,7 @@ class TopFanController extends Controller
             }
             else {
                 $sport = TopFan::where("name",$request->name)->first();
-
+                $assoication = Association::whereuuid($request->association_id)->first();
                 if ($sport == true) {
                     dd("This Fan is already exists");
                     # code...
@@ -52,9 +53,9 @@ class TopFanController extends Controller
                 else{
                     $uuid = Str::uuid();
                     $date =[
-                        'name'=>$request->name,
                         'uuid'=>$uuid, 
-                        'association_id'=>$request->association_id, 
+                        'name'=>$request->name,
+                        'association_id'=>$assoication->id, 
                     ];
                     if (TopFan::create($date)) 
                     {

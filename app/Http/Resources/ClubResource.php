@@ -18,7 +18,7 @@ class ClubResource extends JsonResource
         return [
             'uuid'=> $this->uuid,
             'name'=> $this->name,
-            'logo'=> public_path($path) ,
+            'logo'=> $this->logo ,
             'AddressOfClub'=> $this->address,
             'SportName'=>$this->sport->name,
         ];
