@@ -38,6 +38,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('association')->group(function(){
     Route::get("/index",[AssociationController::class,'index']);
     Route::get("/show/{uuid}",[AssociationController::class,'show']);
+    Route::get("/associationtopfan",[AssociationController::class,'associationtopfan']);
     Route::post("/store",[AssociationController::class,'store']);
     Route::post("/edit/{uuid}",[AssociationController::class,'store']);
 });
@@ -107,6 +108,7 @@ Route::prefix('seasone')->group(function(){
 Route::prefix('standings')->group(function(){
     Route::get("/index",[StandingsController::class,'index']);
     Route::get("/pe",[StandingsController::class,'PlayersEmployees']);
+    Route::get("/Meusiam",[StandingsController::class,'Meusiam']);
     Route::get("/show/{uuid}",[StandingsController::class,'show']);
     Route::post("/store",[StandingsController::class,'store']);
     Route::post("/edit/{uuid}",[StandingsController::class,'store']);
@@ -154,3 +156,10 @@ Route::prefix('user')->group(function(){
     Route::post("/edit/{uuid}",[UserController::class,'store']);
 
 });
+
+Route::get('/run-migrations', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate');
+    return 'Migrations executed successfully!';
+});
+
+
