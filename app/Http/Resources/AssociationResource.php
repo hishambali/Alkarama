@@ -20,7 +20,7 @@ class AssociationResource extends JsonResource
             'image'=> $this->image,
             'description'=> $this->description,
             'country' =>$this->country,
-            'sport_id' => $this->sport->name,
+            'sport_name' => $this->sport->name,
         ];
     }
 }

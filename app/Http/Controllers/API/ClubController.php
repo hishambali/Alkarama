@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClubResource;
 use App\Http\Traits\FileUploader;
+use App\Http\Traits\GeneralTrait;
 use App\Models\Club;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class ClubController extends Controller
 {
     use FileUploader;
+    use GeneralTrait;
     /**
      * Display a listing of the resource.
      *
@@ -50,20 +52,20 @@ class ClubController extends Controller
 
             if ($sport == true) {
                 dd("This Club is already exists");
-                # code...
+                return $this->apiResponse(null,false,"This Club is already exists",402);
             }
             else{
                 $uuid = Str::uuid();
-                $date =[
+                $data =[
                     'name'=>$request->name,
                     'address'=>$request->address,
-                    'logo'=> $this->uploadFile($request,$request->name,"Club","logo"),
+                    'logo'=> $this->uploadFile($request,$request->name.$request->sport_id,"Club","logo"),
                     'uuid'=>$uuid, 
                     'sport_id'=>$request->sport_id, 
                 ];
-                if (Club::create($date)) 
+                if (Club::create($data)) 
                 {
-                    return $date;
+                    return $this->apiResponse($data,true,null,200);
                     
                 }                   
             }

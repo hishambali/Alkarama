@@ -4,15 +4,24 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AssociationResource;
+use App\Http\Resources\TopFanResource;
+use App\Http\Resources\VideoResource;
 use App\Http\Traits\FileUploader;
+use App\Http\Traits\GeneralTrait;
 use App\Models\Association;
+use App\Models\Sport;
+use App\Models\TopFan;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPUnit\Framework\returnSelf;
+
 class AssociationController extends Controller
 {
-use FileUploader;    /**
+use FileUploader;
+use GeneralTrait;    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -39,7 +48,7 @@ use FileUploader;    /**
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'required|string|',
             'country' => 'required|string|',
-            'sport_id' => 'required|string|exists:sports,id',
+            'sport_id' => 'required|string|exists:sports,uuid',
             
         ]);
         
@@ -55,13 +64,14 @@ use FileUploader;    /**
                 }
                 else{
                     $uuid = Str::uuid();
+                    $sportid= Sport::where('uuid',$request->sport_id)->first();
                     $date =[
                         'boss'=>$request->boss,
                         'description'=>$request->description,
                         'country'=>$request->country,
                         'image'=> $this->uploadFile($request,$request->boss,"Association"),
                         'uuid'=>$uuid, 
-                        'sport_id'=>$request->sport_id, 
+                        'sport_id'=> $sportid->id, 
                     ];
                     if (Association::create($date)) 
                     {
@@ -106,5 +116,17 @@ use FileUploader;    /**
     public function destroy(Association $association)
     {
         //
+    }
+    public function associationtopfan(Association $association) {
+        $Boss = AssociationResource::make(Association::first())->boss;
+        $About = AssociationResource::make($association->first())->description;
+        $Members = TopFanResource::collection(TopFan::where('association_id',$association->first()->id)->get());
+        $video = VideoResource::collection(Video::where());
+        $data = [
+            'Boss' => $Boss,
+            'About' => $About,
+            'Members' => $Members
+        ];
+    return $this->apiResponse($data,true,null,200);
     }
 }
