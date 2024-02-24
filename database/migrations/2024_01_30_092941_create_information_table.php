@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('content');
             $table->string('image');
             $table->integer("reads");
-            $table->enum('type', ['Strategy', 'News', 'Regular', 'Slider']);
+            $table->enum('type', ['Strategy', 'News', 'Regular', 'Slider',"About"]);
             $table->morphs('information_able');
             $table->timestamps();
         });
