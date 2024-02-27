@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AboutController;
 use App\Http\Controllers\API\AssociationController;
 use App\Http\Controllers\API\BossController;
 use App\Http\Controllers\API\ClothesController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\API\StatisticController;
 use App\Http\Controllers\API\TopFanController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\VideoController;
+use App\Http\Controllers\MatchesController as ControllersMatchesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +36,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::prefix('about')->group(function(){
+    Route::get("/index",[AboutController::class,'index']);
+    Route::get("/meusiam",[AboutController::class,'Meusiam']);
+    Route::get("/show/{uuid}",[AboutController::class,'show']);
+    Route::post("/store",[AboutController::class,'store']);
 });
 Route::prefix('association')->group(function(){
     Route::get("/index",[AssociationController::class,'index']);
@@ -107,8 +115,8 @@ Route::prefix('seasone')->group(function(){
 });
 Route::prefix('standings')->group(function(){
     Route::get("/index",[StandingsController::class,'index']);
-    Route::get("/pe",[StandingsController::class,'PlayersEmployees']);
     Route::get("/Meusiam",[StandingsController::class,'Meusiam']);
+    Route::get("/StandingsSeason/{seasone}",[StandingsController::class,'StandingsSeason']);
     Route::get("/show/{uuid}",[StandingsController::class,'show']);
     Route::post("/store",[StandingsController::class,'store']);
     Route::post("/edit/{uuid}",[StandingsController::class,'store']);
@@ -130,11 +138,17 @@ Route::prefix('statistic')->group(function(){
 });
 Route::prefix('matches')->group(function(){
     Route::get("/index",[MatchesController::class,'index']);
+    Route::get("/nxt3matchs",[MatchesController::class,'nxt3matchs']);
+    Route::get("/maatchdetails",[MatchesController::class,'MatchDetails']);
     Route::get("/show/{uuid}",[MatchesController::class,'show']);
     Route::post("/store",[MatchesController::class,'store']);
     Route::post("/edit/{uuid}",[MatchesController::class,'store']);
 
 });
+Route::get("playersemployees",[StandingsController::class,'PlayersEmployees']);
+Route::get("home",[MatchesController::class,'home']);
+Route::get("news",[InformationController::class,'index']);
+
 Route::prefix('topfan')->group(function(){
     Route::get("/index",[TopFanController::class,'index']);
     Route::get("/show/{uuid}",[TopFanController::class,'show']);

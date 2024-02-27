@@ -20,7 +20,7 @@ class InformationController extends Controller
     public function index()
     {
         //
-        return $this->apiResponse(InformationResource::collection(Information::get()),true,null,200);
+        return $this->apiResponse(InformationResource::collection(Information::get()));
 
     }
 

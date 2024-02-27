@@ -49,6 +49,7 @@ use GeneralTrait;    /**
             'description' => 'required|string|',
             'country' => 'required|string|',
             'sport_id' => 'required|string|exists:sports,uuid',
+            'url' => 'required|regex:/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/i',
             
         ]);
         
@@ -73,8 +74,10 @@ use GeneralTrait;    /**
                         'uuid'=>$uuid, 
                         'sport_id'=> $sportid->id, 
                     ];
-                    if (Association::create($date)) 
+                    if ($association =Association::create($date)) 
                     {
+                        $association->videos()->save(new Video (['url' =>$request->input('url'),"description"=> $association->boss , 'uuid' =>Str::uuid()]));
+
                         return $date;
                         
                     }                   
@@ -121,11 +124,13 @@ use GeneralTrait;    /**
         $Boss = AssociationResource::make(Association::first())->boss;
         $About = AssociationResource::make($association->first())->description;
         $Members = TopFanResource::collection(TopFan::where('association_id',$association->first()->id)->get());
-        $video = VideoResource::collection(Video::where());
+        $association = Association::find(5);
+        $video= $association->Videos;
         $data = [
             'Boss' => $Boss,
+            'Members' => $Members,
             'About' => $About,
-            'Members' => $Members
+            'Video'=> $video
         ];
     return $this->apiResponse($data,true,null,200);
     }

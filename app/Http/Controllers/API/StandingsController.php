@@ -165,4 +165,14 @@ class StandingsController extends Controller
             return $this->apiResponse(null, false, $e->getMessage(), $e->getCode());
         }
     }
+
+    public function StandingsSeason($seasone)
+    {
+        $season = Seasone::where('uuid',$seasone)->first();
+        $standings = Standings::where('seasone_id', $season->id)
+            ->orderBy('points')
+            ->get();
+
+        return response()->json($standings);
+    }
 }

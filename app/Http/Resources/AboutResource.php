@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class StatisticResource extends JsonResource
+class AboutResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,9 @@ class StatisticResource extends JsonResource
     {
         return [
             'uuid'=> $this->uuid,
-            'name'=> $this->name,
-            'value'=> json_decode($this->value),
-            'match_id'=> $this->match_id,
+            'title'=> $this->title,
+            'image'=> $this->image,
+            'content'=> $this->content,
         ];
     }
 }
