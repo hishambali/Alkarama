@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('information', function (Blueprint $table) {
-            //
-            $table->enum('type', ['Strategy', 'News', 'Regular', 'Slider','About'])->change();
-
+        Schema::create('abouts', function (Blueprint $table) {
+            $table->id();
+            $table->uuid();
+            $table->string('title');
+            $table->longText('content');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
@@ -27,10 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('information', function (Blueprint $table) {
-            //
-            $table->enum('type', ['Strategy', 'News', 'Regular', 'Slider'])->change();
-
-        });
+        Schema::dropIfExists('abouts');
     }
 };

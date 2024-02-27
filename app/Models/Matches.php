@@ -25,7 +25,10 @@ class Matches extends Model
     public function Seasone():object {
         return $this->BelongsTo(Seasone::class);
     }
-    public function Club() {
+    public function Club1() {
+        return $this->BelongsTo(Club::class);
+    }
+    public function Club2() {
         return $this->BelongsTo(Club::class);
     }
     public function Replacments():object
@@ -51,4 +54,16 @@ class Matches extends Model
         return $this->morphMany(Video::class,'video_able');
     }
 
+    protected function checkAndUpdateStatus()
+{
+    $now = now();
+    $matches = Matches::where('when', '<=', $now)
+        ->where('status', 'scheduled')
+        ->get();
+
+    foreach ($matches as $match) {
+        $match->status = 'live';
+        $match->save();
+    }
+}
 }
